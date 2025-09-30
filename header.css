@@ -1,0 +1,261 @@
+  :root {
+    --qfc-bg: rgba(255,255,255,0.65);
+    --qfc-fg: #0b1324;
+    --qfc-muted: #5a6073;
+    --qfc-accent: #1d4ed8;
+    --qfc-border: rgba(41, 93, 214, 0.08);
+    --qfc-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+  }
+  .qfc-dark {
+    --qfc-bg: rgba(15,23,42,0.55);
+    --qfc-fg: #e6e8ee;
+    --qfc-muted: #aab0c0;
+    --qfc-accent: #60a5fa;
+    --qfc-border: rgba(255,255,255,0.12);
+    --qfc-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    background: #0b1020;
+    color: var(--qfc-fg);
+  }
+
+  /* ===== Header / Shell ===== */
+  body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; color: var(--qfc-fg); background: #f6f8fb; }
+  .qfc-dark body { background: #0b1020; }
+  .qfc-header {
+    position: sticky; top: 0; z-index: 1000;
+    backdrop-filter: saturate(120%) blur(10px);
+    background: var(--qfc-bg);
+    border-bottom: 1px solid var(--qfc-border);
+  }
+  .qfc-header--elev {
+    box-shadow: var(--qfc-shadow);
+  }
+  .qfc-container {
+    max-width: 1200px; margin: 0 auto; padding: 12px 18px; display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center;
+  }
+
+  /* ===== Brand ===== */
+  .qfc-brand { display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
+  .qfc-logo-img { max-height: 50px; height: auto; width: auto; display: block; object-fit: contain; }
+  .qfc-brand__name { font-weight: 700; letter-spacing: .2px; color: var(--qfc-fg); font-size: 1.05rem; }
+  .qfc-brand__sub { display: block; font: size 5px;; color: blue; margin-top: -2px;  }
+
+  /* ===== Desktop Nav ===== */
+  .qfc-nav { display: none; align-items: center; gap: 8px; }
+  .qfc-nav__list { display: inline-flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+  .qfc-link {
+    position: relative; display: inline-flex; align-items: center; gap: 12px;
+    padding: 4px 12px; border-radius: 20px; text-decoration: none;
+    color: var(--qfc-fg); font-weight: 500;
+  }
+ .qfc-link:hover, 
+.qfc-link:focus {
+  background: linear-gradient(90deg, #0066cc, #00cc99);
+  color: white;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+  /* Dropdown */
+ /* Dropdown wrapper */
+.qfc-dropdown {
+  position: relative;
+  list-style: none;
+}
+
+/* Dropdown button */
+.qfc-dropbtn {
+  cursor: pointer;
+  padding: 10px 16px;
+  background: linear-gradient(90deg, #0066cc, #00cc99);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.3s ease;
+}
+
+.qfc-dropbtn:hover {
+  opacity: 0.9;
+}
+
+/* Dropdown menu */
+.qfc-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 230px;
+  background:#00cc99;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  padding: 8px;
+  display: none;
+  z-index: 1000;
+  animation: fadeDown 0.25s ease;
+}
+
+/* Dropdown links */
+.qfc-menu a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+/* Shortcut span styling */
+.qfc-kbd {
+  font-size: 0.8rem;
+  background: #eee;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #555;
+}
+
+/* Hover on menu items */
+.qfc-menu a:hover {
+  background: linear-gradient(90deg, #0066cc, #00cc99);
+  color: #fff;
+}
+
+.qfc-menu a:hover .qfc-kbd {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+/* Show dropdown on hover */
+.qfc-dropdown:hover .qfc-menu {
+  display: block;
+}
+
+/* Animation */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Hover effect on menu items */
+.qfc-menu a:hover {
+  background: linear-gradient(90deg, #0066cc, #00cc99);
+  color: white;
+}
+
+/* Show menu when dropdown is active */
+.qfc-dropdown:hover .qfc-menu {
+  display: block;
+}
+
+  .qfc-menu[data-open="true"] { display: block; }
+  .qfc-menu a { display: flex; justify-content: space-between; gap: 8px; padding: 10px 12px; border-radius: 10px; text-decoration: none; color: var(--qfc-fg); }
+  .qfc-menu a:hover, .qfc-menu a:focus { background: rgba(100,116,139,.12); outline: none; }
+  .qfc-kbd { font: 600 20px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; color: var(--qfc-muted); border: 5px solid var(--qfc-border); padding: 2px 6px; border-radius: px; }
+
+  /* ===== Right Controls ===== */
+  .qfc-cta { display: none; align-items: center; gap: 1px; }
+  .qfc-btn {
+    background: var(--qfc-fg); color: rgb(121, 242, 8); padding: 10px 14px; border-radius: 12px; text-decoration: none; font-weight: 600;
+  }
+  .qfc-btn:hover { filter: brightness(0.95); }
+  .qfc-toggle {
+    display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--qfc-border);
+    padding: 8px 10px; border-radius: 12px; cursor: pointer; user-select: none;
+  }
+
+  /* ===== Mobile ===== */
+  .qfc-burger {
+    display: inline-flex; flex-direction: column; gap: 4px; width: 42px; height: 38px; align-items: center; justify-content: center;
+    border: 1px solid var(--qfc-border); border-radius: 12px; background: transparent; cursor: pointer;
+  }
+  .qfc-burger span { width: 18px; height: 2px; background: var(--qfc-fg); border-radius: 2px; transition: transform .2s ease, opacity .2s ease; }
+  .qfc-burger[aria-expanded="true"] span:nth-child(1){ transform: translateY(6px) rotate(45deg);}
+  .qfc-burger[aria-expanded="true"] span:nth-child(2){ opacity: 0;}
+  .qfc-burger[aria-expanded="true"] span:nth-child(3){ transform: translateY(-6px) rotate(-45deg);}
+
+  .qfc-mobile {
+    display: none; border-top: 1px solid var(--qfc-border); background: var(--qfc-bg);
+  }
+  .qfc-mobile[hidden] { display: none !important; }
+  .qfc-mobile__list { list-style: none; margin: 0; padding: 8px; display: grid; gap: 6px; }
+  .qfc-mobile__link {
+    display: flex; justify-content: space-between; align-items: center; padding: 12px 10px; border-radius: 12px; text-decoration: none; color: var(--qfc-fg);
+  }
+  .qfc-mobile__link:hover { background: rgba(100,116,139,.12); }
+
+  /* ===== Layout breakpoints ===== */
+  @media (min-width: 900px) {
+    .qfc-nav { display: inline-flex; }
+    .qfc-cta { display: inline-flex; }
+    .qfc-burger { display: none; }
+    .qfc-mobile { display: none !important; }
+    .qfc-container { grid-template-columns: auto 1fr auto; }
+  }
+
+  /* ===== Focus style ===== */
+  :where(a,button,.qfc-toggle):focus-visible {
+    outline: 2px solid var(--qfc-accent);
+    outline-offset: 2px;
+    border-radius: 12px;
+  }
+  /** paragraph_styling**/
+  /* Professional Paragraph Styling */
+.qfc-paragraph {
+  font-family: "Segoe UI", Roboto, sans-serif; /* Clean font */
+  font-size: 1.5rem;        /* Slightly bigger for professional look */
+  line-height: 1.8;         /* Better readability */
+  color: #2c2c2c;           /* Soft dark gray */
+  margin-bottom: 1.5rem;    /* Space below */
+  text-align: justify;      /* Balanced alignment */
+  letter-spacing: 0.1px;    /* Smooth spacing */
+  max-width: 800px;         /* Keep paragraph width readable */
+  margin-left: auto;        /* Center align with max width */
+  margin-right: auto;
+border: 2px solid #0066cc; /* Solid blue border */
+  padding: 15px;             /* Space inside border */
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.qfc-paragraph:hover {
+  background: #b9cfb4;      /* Light background on hover */
+  padding-left: 12px;       /* Subtle slide-in effect */
+  border-left: 6px solid #0066cc; /* Accent color border */
+  border-right:6px solid #0066cc;
+  border-radius: 8px;
+}
+
+/* Image Styling (optional) */
+section img {
+  width: 100%;
+  max-width: 850px;
+  border-radius: 12px;
+  margin: 10px auto;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+/* Heading Style 1 - Modern Bold */
+.qfc-heading-1 {
+  font-family: "Segoe UI", Roboto, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0066cc;
+  text-align: left;        /* Left side */
+  margin-bottom: 12px;
+  border-left: 4px solid #0066cc;
+  padding-left: 10px;
+  letter-spacing: 0.5px;
+}

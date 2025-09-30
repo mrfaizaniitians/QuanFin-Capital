@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="Gfont.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="script.js" defer></script>
+  <title>QuanFin Capital</title>
+  <style>
+    /* ===== Preloader Styling ===== */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #050816;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease-in-out, visibility 0.8s;
+    }
+
+    #preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .loader-text span {
+      display: inline-block;
+      opacity: 0;
+      background: linear-gradient(90deg, #4f4f7a, #00d4ff, #4f4f7a);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: fadeIn 0.01s forwards, flux 1s linear infinite;
+    }
+
+    /* Sequential delay */
+    .loader-text span:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .loader-text span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .loader-text span:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .loader-text span:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .loader-text span:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    .loader-text span:nth-child(6) {
+      animation-delay: 0.6s;
+    }
+
+    .loader-text span:nth-child(7) {
+      animation-delay: 0.7s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes flux {
+      0% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== Loader Start ===== -->
+  <div id="preloader">
+    <div class="loader-text">
+      <span>Q</span>
+      <span>U</span>
+      <span>A</span>
+      <span>N</span>
+      <span>F</span>
+      <span>I</span>
+      <span>N</span>
+    </div>
+  </div>
+  <!-- ===== Loader End ===== -->
+
+  <!-- ===== Header Start ===== -->
+  
+  <!-- ===== Header End ===== -->
+
+  <!-- Tumhara pura website ka content neeche same rahega -->
+  
+  <!-- ===== Loader Hide Script ===== -->
+  <script>
+    window.addEventListener("load", function () {
+      const preloader = document.getElementById("preloader");
+      preloader.classList.add("hidden");
+    });
+  </script>
+</body>
+
+</html>

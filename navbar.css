@@ -1,0 +1,104 @@
+/* Basic Reset & Body Styling */
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background */
+    color: #343a40; /* Darker text for readability */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container for content */
+.container {
+    max-width: 960px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft shadow */
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #0056b3; /* A professional blue */
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2.5em;
+    border-bottom: 2px solid #e9ecef; /* Subtle underline */
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #004085; /* Slightly darker blue */
+}
+
+/* Paragraphs */
+p {
+    margin-bottom: 1em;
+    font-size: 1.05em;
+}
+
+/* Strong/Bold text */
+strong {
+    color: #004085;
+}
+
+/* Unordered Lists */
+ul {
+    list-style-type: none; /* Remove default bullet */
+    padding: 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+ul li {
+    background-color: #eaf6ff; /* Light blue background for list items */
+    margin-bottom: 10px;
+    padding: 12px 20px;
+    border-left: 4px solid #0056b3; /* Blue left border */
+    border-radius: 4px;
+    font-size: 1.05em;
+}
+
+/* Specific styling for Contact page links/info */
+.contact-info p {
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+}
+
+.contact-info a {
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Horizontal Rule for separation */
+hr {
+    border: 0;
+    height: 1px;
+    background: #e9ecef;
+    margin: 3em 0;
+}
+
+/* Optional: Footer style if you add a footer later */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+    color: #6c757d;
+    font-size: 0.9em;
+}

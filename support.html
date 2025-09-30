@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support</title>
+    <link rel="stylesheet" href="styfornav.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <style>
+        :root {
+            --qfc-bg: rgba(255, 255, 255, 0.65);
+            --qfc-fg: #0b1324;
+            --qfc-muted: #5a6073;
+            --qfc-accent: #1d4ed8;
+            --qfc-border: rgba(41, 93, 214, 0.08);
+            --qfc-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+        }
+
+        .qfc-dark {
+            --qfc-bg: rgba(15, 23, 42, 0.55);
+            --qfc-fg: #e6e8ee;
+            --qfc-muted: #aab0c0;
+            --qfc-accent: #60a5fa;
+            --qfc-border: rgba(255, 255, 255, 0.12);
+            --qfc-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            background: #0b1020;
+            color: var(--qfc-fg);
+        }
+
+        /* ===== Header / Shell ===== */
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            color: var(--qfc-fg);
+            background: #f6f8fb;
+        }
+
+        .qfc-dark body {
+            background: #0b1020;
+        }
+
+        .qfc-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: saturate(120%) blur(10px);
+            background: var(--qfc-bg);
+            border-bottom: 1px solid var(--qfc-border);
+        }
+
+        .qfc-header--elev {
+            box-shadow: var(--qfc-shadow);
+        }
+
+        .qfc-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 18px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* ===== Brand ===== */
+        .qfc-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+        }
+
+        .qfc-logo-img {
+            max-height: 50px;
+            height: auto;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .qfc-brand__name {
+            font-weight: 700;
+            letter-spacing: .2px;
+            color: var(--qfc-fg);
+            font-size: 1.05rem;
+        }
+
+        .qfc-brand__sub {
+            display: block;
+            font: size 5px;
+            ;
+            color: blue;
+            margin-top: -2px;
+        }
+
+        /* ===== Desktop Nav ===== */
+        .qfc-nav {
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qfc-nav__list {
+            display: inline-flex;
+            gap: 4px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .qfc-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--qfc-fg);
+            font-weight: 500;
+        }
+
+        .qfc-link:hover,
+        .qfc-link:focus {
+            background: linear-gradient(90deg, #0066cc, #00cc99);
+            color: white;
+            border-radius: 6px;
+            padding: 4px 8px;
+        }
+
+        /* Dropdown */
+        /* Dropdown wrapper */
+        .qfc-dropdown {
+            position: relative;
+            list-style: none;
+        }
+
+        /* Dropdown button */
+        .qfc-dropbtn {
+            cursor: pointer;
+            padding: 10px 16px;
+            background: linear-gradient(90deg, #0066cc, #00cc99);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s ease;
+        }
+
+        .qfc-dropbtn:hover {
+            opacity: 0.9;
+        }
+
+        /* Dropdown menu */
+        .qfc-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            min-width: 230px;
+            background: linear-gradient(135deg, #f9f9f9, #e6f7ff);
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            padding: 8px;
+            display: none;
+            z-index: 1000;
+            animation: fadeDown 0.25s ease;
+        }
+
+        /* Dropdown links */
+        .qfc-menu a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s ease;
+        }
+
+        /* Shortcut span styling */
+        .qfc-kbd {
+            font-size: 0.8rem;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #555;
+        }
+
+        /* Hover on menu items */
+        .qfc-menu a:hover {
+            background: linear-gradient(90deg, #0066cc, #00cc99);
+            color: #fff;
+        }
+
+        .qfc-menu a:hover .qfc-kbd {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        /* Show dropdown on hover */
+        .qfc-dropdown:hover .qfc-menu {
+            display: block;
+        }
+
+        /* Animation */
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* Hover effect on menu items */
+        .qfc-menu a:hover {
+            background: linear-gradient(90deg, #0066cc, #00cc99);
+            color: white;
+        }
+
+        /* Show menu when dropdown is active */
+        .qfc-dropdown:hover .qfc-menu {
+            display: block;
+        }
+
+        .qfc-menu[data-open="true"] {
+            display: block;
+        }
+
+        .qfc-menu a {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--qfc-fg);
+        }
+
+        .qfc-menu a:hover,
+        .qfc-menu a:focus {
+            background: rgba(100, 116, 139, .12);
+            outline: none;
+        }
+
+        .qfc-kbd {
+            font: 600 20px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+            color: var(--qfc-muted);
+            border: 5px solid var(--qfc-border);
+            padding: 2px 6px;
+            border-radius: px;
+        }
+
+        /* ===== Right Controls ===== */
+        .qfc-cta {
+            display: none;
+            align-items: center;
+            gap: 1px;
+        }
+
+        .qfc-btn {
+            background: var(--qfc-fg);
+            color: rgb(121, 242, 8);
+            padding: 10px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .qfc-btn:hover {
+            filter: brightness(0.95);
+        }
+
+        .qfc-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--qfc-border);
+            padding: 8px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* ===== Mobile ===== */
+        .qfc-burger {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 42px;
+            height: 38px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--qfc-border);
+            border-radius: 12px;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .qfc-burger span {
+            width: 18px;
+            height: 2px;
+            background: var(--qfc-fg);
+            border-radius: 2px;
+            transition: transform .2s ease, opacity .2s ease;
+        }
+
+        .qfc-burger[aria-expanded="true"] span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .qfc-burger[aria-expanded="true"] span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .qfc-burger[aria-expanded="true"] span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        .qfc-mobile {
+            display: none;
+            border-top: 1px solid var(--qfc-border);
+            background: var(--qfc-bg);
+        }
+
+        .qfc-mobile[hidden] {
+            display: none !important;
+        }
+
+        .qfc-mobile__list {
+            list-style: none;
+            margin: 0;
+            padding: 8px;
+            display: grid;
+            gap: 6px;
+        }
+
+        .qfc-mobile__link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 10px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--qfc-fg);
+        }
+
+        .qfc-mobile__link:hover {
+            background: rgba(100, 116, 139, .12);
+        }
+
+        /* ===== Layout breakpoints ===== */
+        @media (min-width: 900px) {
+            .qfc-nav {
+                display: inline-flex;
+            }
+
+            .qfc-cta {
+                display: inline-flex;
+            }
+
+            .qfc-burger {
+                display: none;
+            }
+
+            .qfc-mobile {
+                display: none !important;
+            }
+
+            .qfc-container {
+                grid-template-columns: auto 1fr auto;
+            }
+        }
+
+        /* ===== Focus style ===== */
+        :where(a, button, .qfc-toggle):focus-visible {
+            outline: 2px solid var(--qfc-accent);
+            outline-offset: 2px;
+            border-radius: 12px;
+        }
+
+        /** paragraph_styling**/
+        /* Professional Paragraph Styling */
+        .qfc-paragraph {
+            font-family: "Segoe UI", Roboto, sans-serif;
+            /* Clean font */
+            font-size: 1.5rem;
+            /* Slightly bigger for professional look */
+            line-height: 1.8;
+            /* Better readability */
+            color: #2c2c2c;
+            /* Soft dark gray */
+            margin-bottom: 1.5rem;
+            /* Space below */
+            text-align: justify;
+            /* Balanced alignment */
+            letter-spacing: 0.1px;
+            /* Smooth spacing */
+            max-width: 800px;
+            /* Keep paragraph width readable */
+            margin-left: auto;
+            /* Center align with max width */
+            margin-right: auto;
+            border: 2px solid #0066cc;
+            /* Solid blue border */
+            padding: 15px;
+            /* Space inside border */
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hover Effect */
+        .qfc-paragraph:hover {
+            background: #b9cfb4;
+            /* Light background on hover */
+            padding-left: 12px;
+            /* Subtle slide-in effect */
+            border-left: 6px solid #0066cc;
+            /* Accent color border */
+            border-right: 6px solid #0066cc;
+            border-radius: 8px;
+        }
+
+        /* Image Styling (optional) */
+        section img {
+            width: 100%;
+            max-width: 850px;
+            border-radius: 12px;
+            margin: 10px auto;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Heading Style 1 - Modern Bold */
+        .qfc-heading-1 {
+            font-family: "Segoe UI", Roboto, sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0066cc;
+            text-align: left;
+            /* Left side */
+            margin-bottom: 12px;
+            border-left: 4px solid #0066cc;
+            padding-left: 10px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+    </head>
+
+    <body>
+
+        <header class="qfc-header" id="qfcHeader">
+            <div class="qfc-container">
+                <!-- Brand -->
+                <a class="qfc-brand" href="index.html" aria-label="QuanFin Capital — Home">
+                    <img src="logo_-_Copy-removebg-preview.png" alt="QuanFin Capital Logo" class="qfc-logo-img" />
+
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="qfc-nav" aria-label="Primary">
+                    <ul class="qfc-nav__list">
+                        <li><a class="qfc-link" href="index.html" aria-current="page">Home</a></li>
+                        <ul>
+                            <li class="qfc-dropdown">
+                                <button class="qfc-link qfc-dropbtn" id="marketsBtn" aria-haspopup="true"
+                                    aria-expanded="false" aria-controls="marketsMenu">
+                                    Markets
+                                    <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path fill="currentColor" d="M7 10l5 5 5-5z" />
+                                    </svg>
+                                </button>
+                                <div class="qfc-menu" id="marketsMenu" role="menu" aria-labelledby="marketsBtn"
+                                    data-open="false">
+                                    <a href="https://www.nseindia.com/market-data/top-gainers-losers" target="_blank"
+                                        role="menuitem">
+                                        Equities <span class="qfc-kbd">EQ</span>
+                                    </a>
+                                    <a href="https://www.nseindia.com/market-data/equity-derivatives-watch"
+                                        target="_blank" role="menuitem">
+                                        Futures <span class="qfc-kbd">Fu</span>
+                                    </a>
+                                    <a href="https://www.nseindia.com/market-data/commodity-derivatives" target="_blank"
+                                        role="menuitem">
+                                        Commodities Derivatives <span class="qfc-kbd">CD</span>
+                                    </a>
+                                    <a href="https://www.nseindia.com/market-data/equity-derivatives-watch"
+                                        target="_blank" role="menuitem">
+                                        Stock Options <span class="qfc-kbd">SO</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <li><a class="qfc-link" href="what-we-do.html">What we do</a></li>
+                        <li><a class="qfc-link" href="who_we_are.html">Who we are</a></li>
+                        <li><a class="qfc-link" href="contact_us.html">Contact us</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Actions -->
+                <div class="qfc-cta">
+                    <button class="qfc-toggle" id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">
+                        <span id="themeIcon">🌙</span> <span class="qfc-toggle__txt">Theme</span>
+                    </button>
+                    <a class="qfc-btn" href="#apply">Apply</a>
+                </div>
+
+                <!-- Mobile burger -->
+                <button class="qfc-burger" id="qfcBurger" aria-controls="qfcMobile" aria-expanded="false"
+                    aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+
+            <!-- Mobile panel -->
+            <nav class="qfc-mobile" id="qfcMobile" aria-label="Mobile">
+                <ul class="qfc-mobile__list">
+                    <li><a class="qfc-mobile__link" href="index.html">Home</a></li>
+                    <li>
+                        <details>
+                            <summary class="qfc-mobile__link">Markets</summary>
+                            <div style="padding:6px 10px; display:grid; gap:6px;">
+                                <a class="qfc-mobile__link" href="#equities">Equities</a>
+                                <a class="qfc-mobile__link" href="#futures">Futures</a>
+                                <a class="qfc-mobile__link" href="#fx">FX</a>
+                                <a class="qfc-mobile__link" href="#crypto">Crypto</a>
+                            </div>
+                        </details>
+                    </li>
+                    <li><a class="qfc-mobile__link" href="what-we-do.html">What we do</a></li>
+                    <li><a class="qfc-mobile__link" href="#careers">Careers</a></li>
+                    <li><a class="qfc-mobile__link" href="#contact">Contact</a></li>
+                    <li style="display:flex; gap:10px; padding:6px 2px;">
+                        <button class="qfc-toggle" id="themeToggleM" aria-pressed="false">🌙 Theme</button>
+                        <a class="qfc-btn" href="#apply" style="flex:1; text-align:center;">Apply</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Paste this where you want the Fast card to appear -->
+        <style>
+            /* Shared card styles (applies to all cards) */
+            .feature-boxes {
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 30px;
+                justify-content: center;
+                margin-top: 50px;
+
+            }
+
+            /* Individual card */
+            .feature-card {
+                background: #ffffff;
+                color: #1f2937;
+                /* dark gray */
+                padding: 22px;
+                border-radius: 12px;
+                width: 1450px;
+                /* card width (same for all cards) */
+                box-shadow: 0 12px 18px rgba(16, 24, 40, 0.08);
+                transition: transform 0.28s ease, box-shadow 0.28s ease;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            /* Hover / focus effect (same for all cards) */
+            .feature-card:hover,
+            .feature-card:focus-within {
+                transform: translateY(-10px);
+                box-shadow: 0 14px 30px rgba(16, 24, 40, 0.12);
+            }
+
+            /* Title inside card */
+            .card-title {
+                font-size: 3.35rem;
+                font-weight: 700;
+                margin: 0 0 10px 0;
+                color: #0077ff;
+                /* brand blue — same for all card titles */
+            }
+
+            /* Short excerpt inside card */
+            .card-excerpt {
+                font-size: 0.98rem;
+                line-height: 1.55;
+                color: #374151;
+                margin-bottom: 16px;
+                flex-grow: 1;
+                /* keeps button at bottom when content is short */
+            }
+
+            /* Button shared by all cards */
+            .feature-btn {
+                display: inline-block;
+                padding: 9px 16px;
+                text-decoration: none;
+                background: linear-gradient(90deg, #00A86B 0%, #004080 100%);
+                /* green->blue blend */
+                color: #ffffff;
+                border-radius: 8px;
+                font-weight: 600;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+                transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+            }
+
+            /* Button hover */
+            .feature-btn:hover,
+            .feature-btn:focus {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 18px rgba(0, 0, 0, 0.14);
+                opacity: 0.98;
+            }
+
+            /* Responsive tweak: stack cards on small screens */
+            @media (max-width: 720px) {
+                .feature-card {
+                    width: 100%;
+                    max-width: 420px;
+                    margin-inline: 12px;
+                }
+            }
+        </style>
+        <!-- Support Card -->
+        <div class="feature-card" id="support-card">
+            <h2 class="card-title">💡 Support</h2>
+            <p class="card-excerpt">
+                At QuanFin Capital, we understand that trading can be both exciting and challenging. That is why our
+                Support team is the backbone of our proprietary trading ecosystem. Whether you are a new trader just
+                starting your journey or an experienced professional scaling your strategies, our team ensures you never
+                feel alone in the markets.
+
+                We provide round-the-clock assistance, addressing everything from platform setup, technical issues, and
+                funding queries to real-time market-related support. Our proprietary trading model thrives on speed,
+                accuracy, and risk management — and our support framework is designed to uphold these values. Every
+                trader gets access to a dedicated support channel where queries are resolved quickly and effectively.
+
+                Unlike traditional brokers, we go beyond basic customer service. Our team works alongside traders,
+                helping them interpret analytics, understand performance metrics, and align with firm-wide risk
+                protocols. We also provide educational resources and mentorship, ensuring traders continually improve
+                their strategies while staying compliant with firm guidelines.
+
+                At QuanFin Capital, support means proactive guidance, not just reactive solutions. We monitor the health
+                of our trading systems, anticipate potential issues, and deliver instant fixes to minimize downtime.
+                With our secure infrastructure and human expertise, you can focus on executing trades confidently,
+                knowing that our team has your back at every step.
+
+                Support at QuanFin Capital isn’t just a service — it’s a partnership. Together, we ensure that your
+                trading journey is smooth, professional, and successful.
+            </p>
+           
+        </div>
+
+        <footer class="qfc-footer">
+            <div class="qfc-footer-container">
+
+                <!-- Company Info -->
+                <div class="qfc-footer-col">
+                    <img src="logo_-_Copy-removebg-preview.png" alt="QuanFin Capital Logo" class="qfc-footer-logo">
+                    <p class="qfc-footer-about">
+                        QuanFin Capital is a proprietary trading firm leveraging technology,
+                        data, and advanced systems to redefine the future of quantitative trading.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="qfc-footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="who_we_are.html">Who we are</a></li>
+                        <li><a href="what-we-do.html">What we do</a></li>
+                        <li><a href="contact_us.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="qfc-footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>📍 1st Floor, Dohra Road, Bareilly, India</li>
+                        <li><img src="email_img.png" width="20px">quanfincapital@gmail.com</li>
+                        <li>📞 +91 9520597569</li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="qfc-footer-col">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest market insights.</p>
+                    <form class="qfc-footer-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="qfc-footer-socials">
+                        <a href="https://www.instagram.com/quanfincapital?igsh=MW4xbW8zcjIxdnBjZQ=="
+                            class="fa-linkedintarget" target="_blank"><img
+                                src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+                        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Twitter"></a>
+                        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111468.png"
+                                alt="LinkedIn"></a>
+                        <a href="https://mail.google.com/" class="fa-linkedintarget" target="_blank"><img
+                                src="email_img.png" alt="Email"></a>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="qfc-footer-bottom">
+                <p>© 2025 QuanFin Capital. All rights reserved.</p>
+                <ul class="qfc-footer-legal">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                </ul>
+            </div>
+        </footer>
+        <!-- ===== FOOTER END ===== -->
+
+    </body>
+
+</html>

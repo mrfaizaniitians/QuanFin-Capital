@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who we are</title>
+    <link rel="stylesheet" href="styfornav.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    </head>
+<body>
+    <header class="qfc-header" id="qfcHeader">
+            <div class="qfc-container">
+                <!-- Brand -->
+                <a class="qfc-brand" href="index.html" aria-label="QuanFin Capital — Home">
+                    <img src="WhatsApp Image 2025-09-30 at 2.30.18 PM (1).jpeg" alt="QuanFin Capital Logo" class="qfc-logo-img" />
+                </a>
+                <!-- Desktop Nav -->
+                <nav class="qfc-nav" aria-label="Primary">
+                    <ul class="qfc-nav__list">
+                        <li><a class="qfc-link" href="index.html" aria-current="page">Home</a></li>
+                        <ul>
+                            <li class="qfc-dropdown">
+                                <button class="qfc-link qfc-dropbtn" id="marketsBtn" aria-haspopup="true"
+                                    aria-expanded="false" aria-controls="marketsMenu">
+                                    Markets
+                                    <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path fill="currentColor" d="M7 10l5 5 5-5z" />
+                                    </svg>
+                                </button>
+                                <div class="qfc-menu" id="marketsMenu" role="menu" aria-labelledby="marketsBtn"
+                                    data-open="false">
+                                    <a href="https://www.nseindia.com/market-data/top-gainers-losers" target="_blank"
+                                        role="menuitem">
+                                        Equities <span class="qfc-kbd">EQ</span>
+                                    </a>
+                                    <a href="https://www.nseindia.com/market-data/equity-derivatives-watch"
+                                        target="_blank" role="menuitem">
+                                        Futures <span class="qfc-kbd">Fu</span>
+                                    </a>
+                                    <a href="https://www.nseindia.com/market-data/commodity-derivatives" target="_blank"
+                                        role="menuitem">
+                                        Commodities Derivatives <span class="qfc-kbd">CD</span>
+                                    </a>
+                                    <a href="https://www.nseindia.com/market-data/equity-derivatives-watch"
+                                        target="_blank" role="menuitem">
+                                        Stock Options <span class="qfc-kbd">SO</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <li><a class="qfc-link" href="what-we-do.html">What we do</a></li>
+                        <li><a class="qfc-link" href="who_we_are.html">Who we are</a></li>
+                        <li><a class="qfc-link" href="contact_us.html">Contact us</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Actions -->
+                <div class="qfc-cta">
+                    <button class="qfc-toggle" id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">
+                        <span id="themeIcon">🌙</span> <span class="qfc-toggle__txt">Theme</span>
+                    </button>
+                    <a class="qfc-btn" href="#apply">Apply</a>
+                </div>
+
+                <!-- Mobile burger -->
+                <button class="qfc-burger" id="qfcBurger" aria-controls="qfcMobile" aria-expanded="false"
+                    aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+
+            <!-- Mobile panel -->
+            <nav class="qfc-mobile" id="qfcMobile" aria-label="Mobile">
+                <ul class="qfc-mobile__list">
+                    <li><a class="qfc-mobile__link" href="index.html">Home</a></li>
+                    <li>
+                        <details>
+                            <summary class="qfc-mobile__link">Markets</summary>
+                            <div style="padding:6px 10px; display:grid; gap:6px;">
+                                <a class="qfc-mobile__link" href="#equities">Equities</a>
+                                <a class="qfc-mobile__link" href="#futures">Futures</a>
+                                <a class="qfc-mobile__link" href="#fx">FX</a>
+                                <a class="qfc-mobile__link" href="#crypto">Crypto</a>
+                            </div>
+                        </details>
+                    </li>
+                    <li><a class="qfc-mobile__link" href="what-we-do.html">What we do</a></li>
+                    <li><a class="qfc-mobile__link" href="#careers">Careers</a></li>
+                    <li><a class="qfc-mobile__link" href="#contact">Contact</a></li>
+                    <li style="display:flex; gap:10px; padding:6px 2px;">
+                        <button class="qfc-toggle" id="themeToggleM" aria-pressed="false">🌙 Theme</button>
+                        <a class="qfc-btn" href="#apply" style="flex:1; text-align:center;">Apply</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Paste this where you want the Fast card to appear -->
+        <style>
+            /* Shared card styles (applies to all cards) */
+            .feature-boxes {
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 30px;
+                justify-content: center;
+                margin-top: 50px;
+
+            }
+
+            /* Individual card */
+            .feature-card {
+                background: #ffffff;
+                color: #1f2937;
+                /* dark gray */
+                padding: 22px;
+                border-radius: 12px;
+                width: 1450px;
+                /* card width (same for all cards) */
+                box-shadow: 0 12px 18px rgba(16, 24, 40, 0.08);
+                transition: transform 0.28s ease, box-shadow 0.28s ease;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            /* Hover / focus effect (same for all cards) */
+            .feature-card:hover,
+            .feature-card:focus-within {
+                transform: translateY(-10px);
+                box-shadow: 0 14px 30px rgba(16, 24, 40, 0.12);
+            }
+
+            /* Title inside card */
+            .card-title {
+                font-size: 3.35rem;
+                font-weight: 700;
+                margin: 0 0 10px 0;
+                color: #0077ff;
+                /* brand blue — same for all card titles */
+            }
+
+            /* Short excerpt inside card */
+            .card-excerpt {
+                font-size: 0.98rem;
+                line-height: 1.55;
+                color: #374151;
+                margin-bottom: 16px;
+                flex-grow: 1;
+                /* keeps button at bottom when content is short */
+            }
+
+            /* Button shared by all cards */
+            .feature-btn {
+                display: inline-block;
+                padding: 9px 16px;
+                text-decoration: none;
+                background: linear-gradient(90deg, #00A86B 0%, #004080 100%);
+                /* green->blue blend */
+                color: #ffffff;
+                border-radius: 8px;
+                font-weight: 600;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+                transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+            }
+
+            /* Button hover */
+            .feature-btn:hover,
+            .feature-btn:focus {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 18px rgba(0, 0, 0, 0.14);
+                opacity: 0.98;
+            }
+
+            /* Responsive tweak: stack cards on small screens */
+            @media (max-width: 720px) {
+                .feature-card {
+                    width: 100%;
+                    max-width: 420px;
+                    margin-inline: 12px;
+                }
+            }
+        </style>
+        <div class="what-we-do-section">
+
+            <div class="who-we-are-section">
+                <style>
+                    /* Section Wrapper */
+                    .who-we-are-section {
+                        max-width: 1000px;
+                        margin: 60px auto;
+                        padding: 60px 25px;
+                        background: #ffffff;
+                        border-radius: 14px;
+                        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+                        border-left: 6px solid #00A86B;
+                        /* green accent */
+                    }
+
+                    /* Title */
+                    .who-we-are-section .section-title {
+                        font-size: 2.2rem;
+                        font-weight: 700;
+                        text-align: center;
+                        margin-bottom: 30px;
+                        color: #004080;
+                        /* brand deep blue */
+                    }
+
+                    /* Intro paragraph */
+                    .who-we-are-section .section-intro {
+                        font-size: 1.05rem;
+                        line-height: 1.7;
+                        color: #374151;
+                        text-align: center;
+                        margin-bottom: 25px;
+                    }
+
+                    /* General text */
+                    .who-we-are-section .section-text {
+                        font-size: 1rem;
+                        line-height: 1.65;
+                        color: #4b5563;
+                        margin-bottom: 18px;
+                        text-align: justify;
+                    }
+
+                    /* Pillars list */
+                    .who-we-are-section .pillar-list {
+                        list-style: none;
+                        margin: 20px 0 30px 0;
+                        padding: 0;
+                    }
+
+                    .who-we-are-section .pillar-list li {
+                        background: #f3faff;
+                        /* very light blue background */
+                        padding: 14px 16px;
+                        margin-bottom: 12px;
+                        border-left: 4px solid #0077ff;
+                        /* blue accent */
+                        border-radius: 8px;
+                        font-size: 1rem;
+                        line-height: 1.6;
+                        color: #374151;
+                        transition: transform 0.2s ease, box-shadow 0.2s ease;
+                    }
+
+                    .who-we-are-section .pillar-list li:hover {
+                        transform: translateX(6px);
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+                    }
+
+                    /* Responsive */
+                    @media (max-width: 768px) {
+                        .who-we-are-section .section-title {
+                            font-size: 1.8rem;
+                        }
+
+                        .who-we-are-section .section-intro,
+                        .who-we-are-section .section-text,
+                        .who-we-are-section .pillar-list li {
+                            font-size: 0.95rem;
+                        }
+                    }
+                </style>
+                <h1 class="section-title">Who We Are</h1>
+
+                <p class="section-intro">
+                    QuanFin Capital is a next-generation proprietary trading firm driven by data, technology, and
+                    innovation.
+                    Our vision is to transform market intelligence into capital by combining the power of quantitative
+                    research,
+                    machine learning, and disciplined risk management to trade across global markets.
+                </p>
+
+                <p class="section-text">
+                    We are a team of passionate market analysts, technologists, and strategists who believe that
+                    precision,
+                    discipline, and innovation are the keys to success. Our approach goes beyond traditional trading.
+                    We develop <strong>custom-built algorithms</strong> and <strong>data-driven models</strong>
+                    to identify opportunities where others see uncertainty, turning complex data into profitable
+                    decisions.
+                </p>
+
+                <p class="section-text">Our foundation rests on three core pillars:</p>
+
+                <ul class="pillar-list">
+                    <li><strong>Technology-First Mindset:</strong> We are committed to leveraging advanced analytics and
+                        proprietary systems to stay at the forefront of financial technology.</li>
+                    <li><strong>Strong Risk Management:</strong> We prioritize the protection of capital with robust,
+                        disciplined strategies that guide every decision we make.</li>
+                    <li><strong>Vision for Growth:</strong> We are building India’s next-generation trading desk with a
+                        global outlook, aiming to be a leader in the worldwide quantitative trading space.</li>
+                </ul>
+
+                <p class="section-text">
+                    Together, we are shaping the future of trading—one strategy, one model, and one decision at a time.
+                </p>
+            </div>
+
+            <footer class="qfc-footer">
+                <div class="qfc-footer-container">
+                    <!-- footer content -->
+                </div>
+            </footer>
+
+
+            <footer class="qfc-footer">
+                <div class="qfc-footer-container">
+
+                    <!-- Company Info -->
+                    <div class="qfc-footer-col">
+                        <a href="index.html">
+                            <img src="WhatsApp Image 2025-09-30 at 2.30.18 PM (1).jpeg" alt="QuanFin Capital Logo" class="qfc-footer-logo">
+                        </a>
+                        <p class="qfc-footer-about">
+                            QuanFin Capital is a proprietary trading firm leveraging technology,
+                            data, and advanced systems to redefine the future of quantitative trading.
+                        </p>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="qfc-footer-col">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="who_we_are.html">Who we are</a></li>
+                            <li><a href="what-we-do.html">What we do</a></li>
+                            <li><a href="contact_us.html">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="qfc-footer-col">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li>📍 1st Floor, Dohra Road, Bareilly, India</li>
+                            <li><img src="email_img.png" width="20px">quanfincapital@gmail.com</li>
+                            <li>📞 +91 9520597569</li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="qfc-footer-col">
+                        <h3>Stay Updated</h3>
+                        <p>Subscribe to our newsletter for the latest market insights.</p>
+                        <form class="qfc-footer-form">
+                            <input type="email" placeholder="Enter your email" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+                        <div class="qfc-footer-socials">
+                            <a href="https://www.instagram.com/quanfincapital?igsh=MW4xbW8zcjIxdnBjZQ=="
+                                class="fa-linkedintarget" target="_blank"><img
+                                    src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+                            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png"
+                                    alt="Twitter"></a>
+                            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111468.png"
+                                    alt="LinkedIn"></a>
+                            <a href="https://mail.google.com/" class="fa-linkedintarget" target="_blank"><img
+                                    src="email_img.png" alt="Email"></a>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Bottom Bar -->
+                <div class="qfc-footer-bottom">
+                    <p>© 2025 QuanFin Capital. All rights reserved.</p>
+                    <ul class="qfc-footer-legal">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </footer>
+            <!-- ===== FOOTER END ===== -->
+
+    </body>
+
+</html>
