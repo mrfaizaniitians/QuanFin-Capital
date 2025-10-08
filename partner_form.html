@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="stylesheet" href="header.css">
+   <link rel="stylesheet" href="navsty.css">
+   <script src="script.js" defer></script>
+   <script src="partner_script.js" defer></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    
+  <title>Become a Partner | QuanFin Capital</title>
+  <style>
+    :root {
+      --brand-blue: #2196f3;
+      --brand-green: #8bc34a;
+      --text-dark: #1c1c1c;
+      --bg-light: #f4fdf8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+  
+
+
+    /* SAFE SPACE FOR NAVBAR ABOVE */
+    section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 80px 8%;
+      gap: 40px;
+      background: linear-gradient(
+          to right,
+          rgba(33, 150, 243, 0.1),
+          rgba(139, 195, 74, 0.1)
+        ),
+        url("https://images.unsplash.com/photo-1565372918670-f97dfb06d5c5?auto=format&fit=crop&w=1950&q=80")
+          center/cover no-repeat;
+    }
+
+    /* LEFT TEXT CONTENT */
+    .partner-info {
+      flex: 1;
+      color: #0b2545;
+      max-width: 500px;
+    }
+
+    .partner-info h1 {
+      font-size: 2.3rem;
+      margin-bottom: 15px;
+      color:#0d5d07;
+    }
+
+    .partner-info p {
+      font-size: 1.5rem;
+      line-height: 1.6;
+      color: #333;
+      -webkit-text-stroke-width: 0.5px ;
+    }
+
+    /* FORM ON RIGHT SIDE */
+    .partner-form {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      padding: 40px;
+      width: 420px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
+    }
+
+    .partner-form h2 {
+      color: var(--brand-blue);
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .partner-form p {
+      color: #555;
+      margin-bottom: 25px;
+      font-size: 0.95rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px 14px;
+      margin-bottom: 18px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+      background: #fff;
+      font-size: 0.95rem;
+      transition: 0.3s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--brand-blue);
+      box-shadow: 0 0 6px rgba(33, 150, 243, 0.3);
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--brand-blue), var(--brand-green));
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease-in-out;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+      opacity: 0.95;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 900px) {
+      section {
+        flex-direction: column;
+        padding: 60px 5%;
+        text-align: center;
+      }
+      .partner-form {
+        width: 100%;
+        max-width: 450px;
+      }
+      .partner-info {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+ <header class="qfc-header" id="qfcHeader">
+            <div class="qfc-container">
+                <!-- Brand -->
+                <a class="qfc-brand" href="index.html" aria-label="QuanFin Capital — Home">
+                    <img src="WhatsApp Image 2025-09-30 at 2.30.18 PM (1).jpeg" alt="QuanFin Capital Logo" class="qfc-logo-img" />
+
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="qfc-nav" aria-label="Primary">
+                    <ul class="qfc-nav__list">
+                        <li><a class="qfc-link" href="index.html" aria-current="page">Home</a></li>
+                        <ul>
+                            <li class="qfc-dropdown">
+                                <button class="qfc-link qfc-dropbtn" id="marketsBtn" aria-haspopup="true"
+                                    aria-expanded="false" aria-controls="marketsMenu">
+                                    Markets
+                                    <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path fill="currentColor" d="M7 10l5 5 5-5z" />
+                                    </svg>
+                                </button>
+                                <div class="qfc-menu" id="marketsMenu" role="menu" aria-labelledby="marketsBtn"
+                                    data-open="false">
+                                    <a href="https://www.nseindia.com/market-data/top-gainers-losers" target="_blank"
+                                        role="menuitem">
+                                        Equities <span class="qfc-kbd">EQ</span>
+                                    </a>
+                                    <a href="https://www.nseindia.com/market-data/equity-derivatives-watch"
+                                        target="_blank" role="menuitem">
+                                        Futures <span class="qfc-kbd">Fu</span>
+                                    </a>
+                                    <a href="https://www.nseindia.com/market-data/commodity-derivatives" target="_blank"
+                                        role="menuitem">
+                                        Commodities Derivatives <span class="qfc-kbd">CD</span>
+                                    </a>
+                                    <a href="https://www.nseindia.com/market-data/equity-derivatives-watch"
+                                        target="_blank" role="menuitem">
+                                        Stock Options <span class="qfc-kbd">SO</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <li><a class="qfc-link" href="what-we-do.html">What we do</a></li>
+                        <li><a class="qfc-link" href="who_we_are.html">Who we are</a></li>
+                        <li><a class="qfc-link" href="contact_us.html">Contact us</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Actions -->
+                <div class="qfc-cta">
+        <button class="qfc-toggle" id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">
+          <span id="themeIcon">🌙</span> <span class="qfc-toggle__txt">Theme</span>
+        </button>
+        <a class="qfc-btn" href="partner_form.html">Become Partneter</a>
+      </div>
+
+                <!-- Mobile burger -->
+                <button class="qfc-burger" id="qfcBurger" aria-controls="qfcMobile" aria-expanded="false"
+                    aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+
+            <!-- Mobile panel -->
+            <nav class="qfc-mobile" id="qfcMobile" aria-label="Mobile">
+                <ul class="qfc-mobile__list">
+                    <li><a class="qfc-mobile__link" href="index.html">Home</a></li>
+                    <li>
+                        <details>
+                            <summary class="qfc-mobile__link">Markets</summary>
+                            <div style="padding:6px 10px; display:grid; gap:6px;">
+                                <a class="qfc-mobile__link" href="#equities">Equities</a>
+                                <a class="qfc-mobile__link" href="#futures">Futures</a>
+                                <a class="qfc-mobile__link" href="#fx">FX</a>
+                                <a class="qfc-mobile__link" href="#crypto">Crypto</a>
+                            </div>
+                        </details>
+                    </li>
+                    <li><a class="qfc-mobile__link" href="what-we-do.html">What we do</a></li>
+                    <li><a class="qfc-mobile__link" href="#careers">Careers</a></li>
+                    <li><a class="qfc-mobile__link" href="#contact">Contact</a></li>
+                    <li style="display:flex; gap:10px; padding:6px 2px;">
+                        <button class="qfc-toggle" id="themeToggleM" aria-pressed="false">🌙 Theme</button>
+                        <a class="qfc-btn" href="#apply" style="flex:1; text-align:center;">Apply</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+  <!-- 🔹 Add your NAVBAR above this line safely -->
+
+  <section>
+    <div class="partner-info">
+      <h1>Partner With QuanFin Capital</h1>
+      <p>
+        Join us in transforming the financial landscape with data-driven insights and innovative solutions.  
+        Whether you’re an advisor, investor, or technology partner — together we can build smarter markets.
+      </p>
+    </div>
+
+    <div class="partner-form">
+      <h2>Become a Partner</h2>
+      <p>Fill out your details below to get started with our partnership team.</p>
+
+      <form>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required />
+
+        <label for="business">Business Type</label>
+        <select id="business" required>
+          <option value="">Select type</option>
+          <option value="broker">Broker</option>
+          <option value="advisor">Financial Advisor</option>
+          <option value="investor">Investor</option>
+          <option value="developer">Tech Developer</option>
+        </select>
+
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Tell us about your interest"></textarea>
+
+        <button type="submit">Submit Partnership Request</button>
+      </form>
+    </div>
+  </section>
+
+</body>
+</html>
