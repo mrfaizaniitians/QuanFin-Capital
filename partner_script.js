@@ -1,137 +1,189 @@
-// Select the form
-const form = document.querySelector(".partner-form form");
+// ===============================================
+// 📄 QuanFin Capital | PDF Generator for Partner Form
+// Single-page PDF, header address, diagonal watermark, T&C included
+// ===============================================
 
-// ASYNC EVENT LISTENER: 'async' keyword allows us to use 'await' inside
-form.addEventListener("submit", async function(e) {
-  e.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+  const PDF_CONFIG = {
+    BRAND_INFO: { name: "QuanFin Capital", motto: "Data Turns Into Capital" },
+    COLORS: {
+      brandPrimary: '#002D62',
+      textPrimary: '#111111',
+      textSecondary: '#555555',
+      textSubtle: '#888888',
+      lineColor: '#CCCCCC'
+    },
+    FONTS: {
+      HEADING: { family: 'helvetica', weight: 'bold', size: 20 },
+      SUBHEADING: { family: 'helvetica', weight: 'bold', size: 16 },
+      LABEL: { family: 'helvetica', weight: 'bold', size: 10 },
+      BODY: { family: 'helvetica', weight: 'normal', size: 10 },
+      FOOTER: { family: 'helvetica', weight: 'normal', size: 8 }
+    },
+    MARGINS: { TOP: 40, BOTTOM: 40, LEFT: 40, RIGHT: 40 },
+    get CONTENT_WIDTH() { return 595 - this.MARGINS.LEFT - this.MARGINS.RIGHT; }
+  };
 
-  // Show a loading message to the user (optional but good UX)
-  alert("Generating your PDF, please wait...");
+  const form = document.querySelector(".partner-form form");
+  if (!form) return;
+  const submitButton = form.querySelector("button[type='submit']");
 
-  try {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF('p', 'pt', 'a4');
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const originalButtonText = submitButton.textContent;
+    submitButton.textContent = "Generating...";
+    submitButton.disabled = true;
 
-    // ===================================================================
-    // 1. DYNAMICALLY LOAD THE LOGO IMAGE
-    // ===================================================================
-    const imagePath = '/images/logo.png'; // Make sure this path is correct!
-    
-    // This helper function fetches the image and returns its Base64 data
-    const loadImageAsBase64 = (url) => {
-      return fetch(url)
-        .then(response => response.blob())
-        .then(blob => new Promise((resolve, reject) => {
+    try {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF('p', 'pt', 'a4');
+
+      // Load logo
+      const imagePath = 'WhatsApp Image 2025-09-30 at 2.30.18 PM (1).jpeg';
+      const loadImageAsBase64 = async (url) => {
+        const blob = await fetch(url).then(r => r.blob());
+        return await new Promise((resolve, reject) => {
           const reader = new FileReader();
           reader.onloadend = () => resolve(reader.result);
           reader.onerror = reject;
           reader.readAsDataURL(blob);
-        }));
-    };
+        });
+      };
+      const logoBase64 = await loadImageAsBase64(imagePath);
 
-    // We 'await' here, the code will pause until the image is fully loaded
-    const logoBase64 = await loadImageAsBase64(imagePath);
+      // Header
+      const addHeader = (doc, logo) => {
+        const rightEdge = doc.internal.pageSize.getWidth() - PDF_CONFIG.MARGINS.RIGHT;
+        doc.addImage(logo, 'PNG', PDF_CONFIG.MARGINS.LEFT, PDF_CONFIG.MARGINS.TOP, 150, 25);
 
-    // ===================================================================
-    // 2. HELPER FUNCTIONS (Now they use the dynamically loaded logo)
-    // ===================================================================
-    const addHeader = (doc, logoData) => {
-      doc.addImage(logoData, 'PNG', 40, 30, 150, 25);
-      // ... rest of the header code is the same
-      doc.setFontSize(9);
-      doc.setFont("helvetica", "normal");
-      doc.setTextColor(150);
-      doc.text("Partnership Inquiry | Strictly Confidential", 555, 45, null, "right");
-      doc.text(new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }), 555, 60, null, "right");
-      doc.setDrawColor(0, 45, 98);
-      doc.setLineWidth(1);
-      doc.line(40, 80, 555, 80);
-    };
+        doc.setFontSize(PDF_CONFIG.FONTS.FOOTER.size);
+        doc.setFont(PDF_CONFIG.FONTS.FOOTER.family, PDF_CONFIG.FONTS.FOOTER.weight);
+        doc.setTextColor(PDF_CONFIG.COLORS.textSecondary);
+        doc.text("Partnership Inquiry | Strictly Confidential", rightEdge, PDF_CONFIG.MARGINS.TOP + 5, { align: 'right' });
 
-    // All other functions (addFooter, addWatermark, addTermsAndConditionsPage)
-    // remain exactly the same as before. I am omitting them here for brevity,
-    // but you should keep them in your code.
-    // ... (Paste your addFooter, addWatermark, addTermsAndConditionsPage functions here) ...
-    // Note: I'm including them below for a complete copy-paste solution.
+        // Address below header
+        doc.text("Business Tower, Dohra Road, 243006", rightEdge, PDF_CONFIG.MARGINS.TOP + 25, { align: 'right' });
 
-    const addFooter = (doc) => {
-      const pageCount = doc.internal.getNumberOfPages();
-      for (let i = 1; i <= pageCount; i++) {
+        doc.setDrawColor(PDF_CONFIG.COLORS.brandPrimary);
+        doc.setLineWidth(1);
+        doc.line(PDF_CONFIG.MARGINS.LEFT, PDF_CONFIG.MARGINS.TOP + 50, rightEdge, PDF_CONFIG.MARGINS.TOP + 50);
+      };
+
+      // Footer
+      const addFooter = (doc) => {
+        const pageCount = doc.internal.getNumberOfPages();
+        const rightEdge = doc.internal.pageSize.getWidth() - PDF_CONFIG.MARGINS.RIGHT;
+        const bottom = doc.internal.pageSize.getHeight() - PDF_CONFIG.MARGINS.BOTTOM;
+
+        for (let i = 1; i <= pageCount; i++) {
           doc.setPage(i);
-          doc.setFontSize(8);
-          doc.setFont("helvetica", "normal");
-          doc.setTextColor(120);
-          doc.text(`Page ${i} of ${pageCount}`, 555, 810, null, "right");
-          doc.text("QuanFin Capital | Data Turns Into Capital", doc.internal.pageSize.getWidth() / 2, 810, { align: 'center' });
-      }
-    };
-  
-    const addWatermark = (doc) => {
-      const totalPages = doc.internal.getNumberOfPages();
-      for (let i = 1; i <= totalPages; i++) {
-          doc.setPage(i);
-          doc.saveGraphicsState();
-          doc.setGState(new doc.GState({opacity: 0.08}));
-          doc.setFontSize(90);
-          doc.setTextColor(0, 45, 98);
-          doc.text('CONFIDENTIAL', doc.internal.pageSize.getWidth() / 2, doc.internal.pageSize.getHeight() / 2, { align: 'center', angle: 45 });
-          doc.restoreGraphicsState();
-      }
-    };
-  
-    const addTermsAndConditionsPage = (doc) => {
-      doc.addPage();
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(16);
-      doc.setTextColor(0, 45, 98);
-      doc.text("Terms & Conditions of Inquiry", 40, 60);
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(9);
-      doc.setTextColor(80);
-      const termsText = ["1. No Guarantee of Partnership: ...", "2. Confidentiality: ...", "3. Accuracy of Information: ...", "4. Non-Binding: ...", "5. Data Usage: ...", "6. No Financial Advice: ...", "7. Right to Refuse: ..."];
-      let yPosition = 100;
-      termsText.forEach(term => {
-          const lines = doc.splitTextToSize(term, 515);
-          doc.text(lines, 40, yPosition);
-          yPosition += (lines.length * 12) + 10;
-      });
-    };
+          doc.setFontSize(PDF_CONFIG.FONTS.FOOTER.size);
+          doc.setFont(PDF_CONFIG.FONTS.FOOTER.family, PDF_CONFIG.FONTS.FOOTER.weight);
+          doc.setTextColor(PDF_CONFIG.COLORS.textSubtle);
+          doc.text(`Page ${i} of ${pageCount}`, rightEdge, bottom, { align: 'right' });
+          doc.text(`${PDF_CONFIG.BRAND_INFO.name} | ${PDF_CONFIG.BRAND_INFO.motto}`, doc.internal.pageSize.getWidth() / 2, bottom, { align: 'center' });
+        }
+      };
 
+      // Watermark
+      const addWatermark = (doc) => {
+        doc.saveGraphicsState();
+        doc.setGState(new doc.GState({ opacity: 0.08 }));
+        doc.setFontSize(50);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(PDF_CONFIG.COLORS.brandPrimary);
+        doc.text('CONFIDENTIAL', doc.internal.pageSize.getWidth() / 2, doc.internal.pageSize.getHeight() / 2, { align: 'center', angle: 45 });
+        doc.restoreGraphicsState();
+      };
 
-    // ===================================================================
-    // 3. PDF CONTENT ASSEMBLY
-    // ===================================================================
-    addHeader(doc, logoBase64); // Pass the loaded logo data to the header function
+      // Assemble content
+      addHeader(doc, logoBase64);
+      addWatermark(doc);
 
-    // ... (The rest of your PDF content generation code is exactly the same)
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const business = document.getElementById("business").value;
-    const message = document.getElementById("message").value;
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(20);
-    doc.setTextColor(0, 45, 98);
-    doc.text("Partnership Inquiry Summary", 40, 120);
-    let y = 160;
-    const drawRow = (label, value) => { doc.setFont("helvetica", "bold"); doc.setFontSize(11); doc.setTextColor(30); doc.text(label, 40, y); doc.setFont("helvetica", "normal"); doc.setFontSize(11); doc.setTextColor(80); doc.text(value, 180, y); y += 25; };
-    drawRow("APPLICANT NAME:", name);
-    drawRow("CONTACT EMAIL:", email);
-    drawRow("BUSINESS TYPE:", business);
-    doc.setFont("helvetica", "bold"); doc.setFontSize(11); doc.setTextColor(30); doc.text("PROPOSAL / MESSAGE:", 40, y); y += 20;
-    doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.setTextColor(80); const messageLines = doc.splitTextToSize(message, 515); doc.text(messageLines, 40, y);
-    y = 700; doc.setDrawColor(80); doc.setLineWidth(0.5); doc.line(40, y, 240, y); doc.line(355, y, 555, y); doc.setFontSize(9); doc.setTextColor(100); doc.text("Applicant Signature", 40, y + 15); doc.text("Date", 355, y + 15);
+      let y = 130;
+      doc.setFont(PDF_CONFIG.FONTS.HEADING.family, PDF_CONFIG.FONTS.HEADING.weight);
+      doc.setFontSize(PDF_CONFIG.FONTS.HEADING.size);
+      doc.setTextColor(PDF_CONFIG.COLORS.brandPrimary);
+      doc.text("Partnership Inquiry Summary", PDF_CONFIG.MARGINS.LEFT, y);
+      y += 50;
 
-    addTermsAndConditionsPage(doc);
-    addWatermark(doc);
-    addFooter(doc);
+      const drawRow = (label, value) => {
+        doc.setFont(PDF_CONFIG.FONTS.LABEL.family, PDF_CONFIG.FONTS.LABEL.weight);
+        doc.setFontSize(PDF_CONFIG.FONTS.LABEL.size);
+        doc.setTextColor(PDF_CONFIG.COLORS.textPrimary);
+        doc.text(label.toUpperCase(), PDF_CONFIG.MARGINS.LEFT, y);
 
-    // ===================================================================
-    // 4. SAVE THE PDF
-    // ===================================================================
-    doc.save(`${name.replace(/\s+/g, '_')}_Partnership_Inquiry.pdf`);
+        doc.setFont(PDF_CONFIG.FONTS.BODY.family, PDF_CONFIG.FONTS.BODY.weight);
+        doc.setTextColor(PDF_CONFIG.COLORS.textSecondary);
+        doc.text(value, PDF_CONFIG.MARGINS.LEFT + 140, y);
+        y += 30;
+      };
 
-  } catch (error) {
-    console.error("Error generating PDF:", error);
-    alert("Sorry, there was an error creating the PDF. Please check the console for details.");
-  }
+      drawRow("Applicant Name:", document.getElementById("name").value);
+      drawRow("Contact Email:", document.getElementById("email").value);
+      drawRow("Business Type:", document.getElementById("business").value);
+
+      y += 10;
+      doc.setFont(PDF_CONFIG.FONTS.LABEL.family, PDF_CONFIG.FONTS.LABEL.weight);
+      doc.text("PROPOSAL / MESSAGE:", PDF_CONFIG.MARGINS.LEFT, y);
+      y += 20;
+
+      const message = document.getElementById("message").value;
+      const wrapped = doc.splitTextToSize(message, PDF_CONFIG.CONTENT_WIDTH);
+      doc.setFont(PDF_CONFIG.FONTS.BODY.family, PDF_CONFIG.FONTS.BODY.weight);
+      doc.text(wrapped, PDF_CONFIG.MARGINS.LEFT, y);
+
+      // Terms & Conditions (Proprietary Trading Firm)
+      y += wrapped.length * 12 + 20; // add space after message
+      doc.setFont(PDF_CONFIG.FONTS.SUBHEADING.family, PDF_CONFIG.FONTS.SUBHEADING.weight);
+      doc.setFontSize(PDF_CONFIG.FONTS.SUBHEADING.size);
+      doc.setTextColor(PDF_CONFIG.COLORS.brandPrimary);
+      doc.text("Terms & Conditions", PDF_CONFIG.MARGINS.LEFT, y);
+      y += 20;
+
+      doc.setFont(PDF_CONFIG.FONTS.BODY.family, PDF_CONFIG.FONTS.BODY.weight);
+      doc.setFontSize(PDF_CONFIG.FONTS.BODY.size);
+      doc.setTextColor(PDF_CONFIG.COLORS.textSecondary);
+
+      const terms = `
+1. This inquiry does not guarantee a partnership with ${PDF_CONFIG.BRAND_INFO.name}.
+2. All personal and business information shared is confidential and used for evaluation purposes only.
+3. Participation in proprietary trading is subject to compliance, risk disclosure, and acceptance by ${PDF_CONFIG.BRAND_INFO.name}.
+4. Submission of false or misleading information may lead to rejection of the inquiry.
+5. All trading decisions are solely the responsibility of the applicant; ${PDF_CONFIG.BRAND_INFO.name} is not liable for losses.
+6. Communication through this inquiry is non-binding until a formal agreement is signed.
+      `;
+
+      const termLines = doc.splitTextToSize(terms.trim(), PDF_CONFIG.CONTENT_WIDTH);
+      doc.text(termLines, PDF_CONFIG.MARGINS.LEFT, y);
+
+      // Signature area
+      y = doc.internal.pageSize.getHeight() - 150;
+      doc.setDrawColor(PDF_CONFIG.COLORS.textSecondary);
+      doc.setLineWidth(0.5);
+      const rightEdge = doc.internal.pageSize.getWidth() - PDF_CONFIG.MARGINS.RIGHT;
+      doc.line(PDF_CONFIG.MARGINS.LEFT, y, PDF_CONFIG.MARGINS.LEFT + 200, y);
+      doc.line(rightEdge - 200, y, rightEdge, y);
+      doc.setFontSize(PDF_CONFIG.FONTS.FOOTER.size + 1);
+      doc.setTextColor(PDF_CONFIG.COLORS.textSubtle);
+      doc.text("Applicant Signature", PDF_CONFIG.MARGINS.LEFT, y + 15);
+      doc.text("Date", rightEdge - 200, y + 15);
+
+      addFooter(doc);
+
+      const applicantName = document.getElementById("name").value || "Applicant";
+      doc.save(`${applicantName.replace(/\s+/g, '_')}_Partnership_Inquiry.pdf`);
+
+    } catch (error) {
+      console.error("❌ Error generating PDF:", error);
+      submitButton.textContent = "Generation Failed!";
+      submitButton.style.backgroundColor = 'red';
+    } finally {
+      setTimeout(() => {
+        submitButton.textContent = originalButtonText;
+        submitButton.disabled = false;
+        submitButton.style.backgroundColor = '';
+      }, 2000);
+    }
+  });
 });
