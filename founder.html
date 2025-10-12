@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Founder's Message | QuanFin Capital</title>
+
+  <style>
+    /* ===========================
+       Base Styling
+    ============================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #0a0f1a;
+      color: #eaeaea;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 80px 20px;
+    }
+
+    /* ===========================
+       Header
+    ============================ */
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      text-transform: lowercase;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ff9933, #ffffff, #138808);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      color: #9da1a6;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+
+    /* ===========================
+       Main Section Layout
+    ============================ */
+    .founder-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 255, 180, 0.08);
+      max-width: 1000px;
+      padding: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      transition: 0.4s;
+    }
+
+    .founder-section:hover {
+      box-shadow: 0 0 40px rgba(0, 255, 180, 0.15);
+      transform: translateY(-3px);
+    }
+
+    /* ===========================
+       Image Container
+    ============================ */
+    .founder-photo {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .founder-photo img {
+      width: 270px;
+      height: 270px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #00ffb3;
+      box-shadow: 0 0 25px rgba(0, 255, 179, 0.25);
+      transition: transform 0.4s;
+    }
+
+    .founder-photo img:hover {
+      transform: scale(1.);
+    }
+
+    /* ===========================
+       Message Container
+    ============================ */
+    .founder-message {
+      flex: 2 1 500px;
+      padding: 0 30px;
+    }
+
+    .founder-message h2 {
+      color: #00ffb3;
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .founder-message h4 {
+      color: #bbb;
+      font-weight: 400;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .tricolor-line {
+      width: 140px;
+      height: 5px;
+      background: linear-gradient(90deg, #ff9933, #ffffff, #138808);
+      border-radius: 4px;
+      margin-bottom: 25px;
+    }
+
+    .founder-message p {
+      line-height: 1.8;
+      font-size: 1rem;
+      color: #dcdcdc;
+      text-align: justify;
+    }
+
+    .founder-message p strong {
+      color: #00ffb3;
+    }
+
+    /* ===========================
+       Signature
+    ============================ */
+    .signature {
+      margin-top: 30px;
+      font-family: "Brush Script MT", cursive;
+      font-size: 1.3rem;
+      color: #00ffb3;
+      text-align: right;
+    }
+
+    /* ===========================
+       Footer
+    ============================ */
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    /* ===========================
+       Responsive Design
+    ============================ */
+    @media (max-width: 768px) {
+      .founder-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      .founder-message {
+        padding: 0;
+      }
+
+      .signature {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Founder's Message</h1>
+    <p>QuanFin Capital — Data Turns Into Capital</p>
+  </header>
+
+  <section class="founder-section">
+    <div class="founder-photo">
+      <img src="Faizan photo.jpeg" alt="Founder Image" />
+    </div>
+
+    <div class="founder-message">
+      <h2>Mohd Faizan</h2>
+      <h4>Founder & Quant Developer, QuanFin Capital</h4>
+      <div class="tricolor-line"></div>
+
+      <p>
+        As the founder of <strong>QuanFin Capital</strong>, I envision an India that doesn’t just consume financial knowledge — but creates it, transforms it, and leads the world with it.  
+        Every piece of code we build and every strategy we design reflects the spirit of our nation — disciplined, intelligent, and fearless. 🇮🇳  
+        <br><br>
+        We are on a mission to blend data science with patriotism — to turn analytics into empowerment and technology into trust.  
+        Let us prove that an Indian mind, when driven by courage and purity of intent, can outshine the biggest trading floors on the planet.  
+        <br><br>
+        Together, we rise — not just for profit, but for pride. <strong>Jai Hind!</strong>
+      </p>
+
+      <div class="signature">— Mohd Faizan 🇮🇳</div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 QuanFin Capital | Designed with Pride 🇮🇳
+  </footer>
+</body>
+</html>

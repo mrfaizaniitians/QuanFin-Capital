@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuanFin Capital - Our Team</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <style>
+        /* General Body & Typography */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #f0f0f0; /* Light text */
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Section Header */
+.team-section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.team-section h2 {
+    font-size: 2.8rem;
+    color: #00d2ff; /* Brand color */
+    margin-bottom: 20px;
+}
+
+.section-description {
+    font-size: 1.1rem;
+    color: #b0b0b0;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+}
+
+/* Team Grid Layout */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid for 2-4 columns */
+    gap: 30px;
+}
+
+/* Individual Team Member Card */
+.team-member {
+    background-color: #1a1a1a; /* Slightly lighter dark background for cards */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.member-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Circular image */
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid #00d2ff; /* Brand color border */
+    box-shadow: 0 0 0 8px rgba(0, 210, 255, 0.2); /* Subtle glow effect */
+}
+
+.team-member h3 {
+    font-size: 1.8rem;
+    color: #f0f0f0;
+    margin: 15px 0 5px 0;
+}
+
+.member-title {
+    font-size: 1rem;
+    color: #00d2ff; /* Brand color for title */
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.member-bio {
+    font-size: 0.95rem;
+    color: #b0b0b0;
+    min-height: 90px; /* Ensures consistent card height */
+}
+
+.member-social {
+    margin-top: 20px;
+}
+
+.member-social a {
+    color: #b0b0b0;
+    font-size: 1.4rem;
+    margin: 0 8px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.member-social a:hover {
+    color: #00d2ff;
+    transform: translateY(-3px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .team-section h2 {
+        font-size: 2rem;
+    }
+    .team-grid {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+    .member-bio {
+        min-height: auto; /* Remove fixed height on small screens */
+    }
+}
+    </style>
+
+    <header class="qfc-header" id="qfcHeader">
+       <div class="qfc-container">
+    <!-- Brand -->
+    <a class="qfc-brand" href="index.html" aria-label="QuanFin Capital — Home">
+      <img src="WhatsApp Image 2025-09-30 at 2.30.18 PM (1).jpeg" alt="QuanFin Capital Logo" class="qfc-logo-img" />
+      
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="qfc-nav" aria-label="Primary">
+      <ul class="qfc-nav__list">
+        <li><a class="qfc-link" href="index.html" aria-current="page">Home</a></li>
+        <ul>
+  <li class="qfc-dropdown">
+    <button class="qfc-link qfc-dropbtn" id="marketsBtn" aria-haspopup="true" aria-expanded="false" aria-controls="marketsMenu">
+      Markets
+      <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M7 10l5 5 5-5z"/>
+      </svg>
+    </button>
+    <div class="qfc-menu" id="marketsMenu" role="menu" aria-labelledby="marketsBtn" data-open="false">
+      <a href="https://www.nseindia.com/market-data/top-gainers-losers" target="_blank" role="menuitem">
+        Equities <span class="qfc-kbd">EQ</span>
+      </a>
+      <a href="https://www.nseindia.com/market-data/equity-derivatives-watch" target="_blank" role="menuitem">
+        Futures <span class="qfc-kbd">Fu</span>
+      </a>
+      <a href="https://www.nseindia.com/market-data/commodity-derivatives" target="_blank" role="menuitem">
+        Commodities Derivatives <span class="qfc-kbd">CD</span>
+      </a>
+      <a href="https://www.nseindia.com/market-data/equity-derivatives-watch" target="_blank" role="menuitem">
+        Stock Options <span class="qfc-kbd">SO</span>
+      </a>
+    </div>
+  </li>
+</ul>
+
+        <li><a class="qfc-link" href="what-we-do.html">What we do</a></li>
+        <li><a class="qfc-link" href="who_we_are.html">Who we are</a></li>
+        <li><a class="qfc-link" href="contact_us.html">Contact us</a></li>
+         <li><a class="qfc-link" href="teamates.html">Teammates</a></li>
+          <li><a class="qfc-link" href="founder.html" target="_blank">Message</a></li>
+      </ul>
+    </nav>
+
+    <!-- Actions -->
+    <div class="qfc-cta">
+      <button class="qfc-toggle" id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">
+        <span id="themeIcon">🌙</span> <span class="qfc-toggle__txt">Theme</span>
+      </button>
+      <a class="qfc-btn" href="partner_form.html">Become Partner</a>
+    </div>
+
+    <!-- Mobile burger -->
+    <button class="qfc-burger" id="qfcBurger" aria-controls="qfcMobile" aria-expanded="false" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile panel -->
+  <nav class="qfc-mobile" id="qfcMobile" aria-label="Mobile">
+    <ul class="qfc-mobile__list">
+      <li><a class="qfc-mobile__link" href="index.html">Home</a></li>
+      <li><details>
+        <summary class="qfc-mobile__link">Markets</summary>
+        <div style="padding:6px 10px; display:grid; gap:6px;">
+          <a class="qfc-mobile__link" href="#equities">Equities</a>
+          <a class="qfc-mobile__link" href="#futures">Futures</a>
+          <a class="qfc-mobile__link" href="#fx">FX</a>
+          <a class="qfc-mobile__link" href="#crypto">Crypto</a>
+        </div>
+      </details></li>
+      <li><a class="qfc-mobile__link" href="what-we-do.html">What we do</a></li>
+      <li><a class="qfc-mobile__link" href="#careers">Careers</a></li>
+      <li><a class="qfc-mobile__link" href="#contact">Contact</a></li>
+       <li><a class="qfc-link" href="teamates.html">Teammates</a></li>
+        <li><a class="qfc-link" href="founder.html" target="_blank">Message</a></li>
+      <li style="display:flex; gap:10px; padding:6px 2px;">
+        <button class="qfc-toggle" id="themeToggleM" aria-pressed="false">🌙 Theme</button>
+        <a class="qfc-btn" href="partner_form.html" style="flex:1; text-align:center;">Become Partner</a>
+      </li>
+    </ul>
+  </nav>
+    </header>
+
+    <section class="team-section">
+        <div class="container">
+            <h2>Meet the Minds Behind QuanFin Capital</h2>
+            <p class="section-description">Our diverse team of experts drives innovation and consistent performance in the dynamic financial markets.</p>
+
+            <div class="team-grid">
+                
+                <div class="team-member">
+                    <img src="Faizan photo.jpeg" alt="Team Member 1" class="member-photo">
+                    <h3>Mohd Faizan</h3>
+                    <p class="member-title">CEO & Head Quant</p>
+                    <p class="member-bio">Mohd Faizan leads our strategic initiatives, leveraging her deep expertise in quantitative finance and machine learning.</p>
+                    <div class="member-social">
+                        <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/mrfaizaniitians?igsh=YzljYTk1ODg3Zg==" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                
+
+                <div class="team-member">
+                    <img src="Ali_arshad.jpeg" alt="Team Member 3" class="member-photo">
+                    <h3>Ali Arshad</h3>
+                    <p class="member-title">Lead Portfolio Manager</p>
+                    <p class="member-bio">Ali Arshad manages several key portfolios, specializing in high-frequency trading and risk mitigation.</p>
+                    <div class="member-social">
+                        <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img src="Arafat.jpeg" alt="Team Member 4" class="member-photo">
+                    <h3>Arafat Husain</h3>
+                    <p class="member-title">Senior Data Scientist</p>
+                    <p class="member-bio">Arafat Husain is instrumental in developing predictive models and extracting actionable insights from market data.</p>
+                    <div class="member-social">
+                        <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    </body>
+</html>
